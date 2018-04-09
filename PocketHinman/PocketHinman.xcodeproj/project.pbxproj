@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1FDC51207BCDE90067EBE2 /* ResizeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1FDC50207BCDE90067EBE2 /* ResizeImageViewController.swift */; };
+		0CAC1F2B2077EB7300FAD329 /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CAC1F2A2077EB7300FAD329 /* CalloutView.xib */; };
+		0CAC1F2D2077EB8600FAD329 /* CalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAC1F2C2077EB8600FAD329 /* CalloutView.swift */; };
 		0CF8D3572073C2AB00251D41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF8D3562073C2AB00251D41 /* AppDelegate.swift */; };
 		0CF8D3592073C2AB00251D41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF8D3582073C2AB00251D41 /* ViewController.swift */; };
 		0CF8D35C2073C2AB00251D41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CF8D35A2073C2AB00251D41 /* Main.storyboard */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C1FDC50207BCDE90067EBE2 /* ResizeImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeImageViewController.swift; sourceTree = "<group>"; };
+		0CAC1F2A2077EB7300FAD329 /* CalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalloutView.xib; sourceTree = "<group>"; };
+		0CAC1F2C2077EB8600FAD329 /* CalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalloutView.swift; sourceTree = "<group>"; };
 		0CF8D3532073C2AB00251D41 /* PocketHinman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketHinman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF8D3562073C2AB00251D41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CF8D3582073C2AB00251D41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +66,9 @@
 				0CF8D35D2073C2AB00251D41 /* Assets.xcassets */,
 				0CF8D35F2073C2AB00251D41 /* LaunchScreen.storyboard */,
 				0CF8D3622073C2AB00251D41 /* Info.plist */,
+				0CAC1F2A2077EB7300FAD329 /* CalloutView.xib */,
+				0CAC1F2C2077EB8600FAD329 /* CalloutView.swift */,
+				0C1FDC50207BCDE90067EBE2 /* ResizeImageViewController.swift */,
 			);
 			path = PocketHinman;
 			sourceTree = "<group>";
@@ -126,6 +135,7 @@
 				0CF8D3612073C2AB00251D41 /* LaunchScreen.storyboard in Resources */,
 				0CF8D35E2073C2AB00251D41 /* Assets.xcassets in Resources */,
 				0CF8D35C2073C2AB00251D41 /* Main.storyboard in Resources */,
+				0CAC1F2B2077EB7300FAD329 /* CalloutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +148,8 @@
 			files = (
 				0CF8D3592073C2AB00251D41 /* ViewController.swift in Sources */,
 				0CF8D3572073C2AB00251D41 /* AppDelegate.swift in Sources */,
+				0C1FDC51207BCDE90067EBE2 /* ResizeImageViewController.swift in Sources */,
+				0CAC1F2D2077EB8600FAD329 /* CalloutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKZ7HZ294Y;
 				INFOPLIST_FILE = PocketHinman/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HardingLLC.PocketHinman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKZ7HZ294Y;
 				INFOPLIST_FILE = PocketHinman/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HardingLLC.PocketHinman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
