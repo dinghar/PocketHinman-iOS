@@ -61,6 +61,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
                 flicker()
             } else {
                 playPauseButton.setImage(#imageLiteral(resourceName: "Play-Button-Sized"), for: .normal)
+                cameraView.isHidden = false
+                imageView.isHidden = false
+                configureAlphaLabel()
             }
         }
     }
@@ -136,6 +139,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     func configureAlphaLabel() {
         if let alphaValue = UserDefaults.standard.value(forKey: "alpha") as! Double? {
             alpha = alphaValue
+        } else {
+            alpha = 0.5
         }
         calloutView.stepper.value = alpha
     }
@@ -234,16 +239,15 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     // MARK: Flickering
     
     func flicker() {
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(sliderValue)) {
-            if self.isPlaying {
-                if self.sliderValue != 1 {
-                    self.cameraView.isHidden = self.imageView.isHidden
-                    self.imageView.isHidden = !self.imageView.isHidden
-                } else {
-                    self.cameraView.isHidden = true
-                    self.imageView.isHidden = false
-                }
+        if self.isPlaying {
+            if self.sliderValue != 1 {
+                self.cameraView.isHidden = self.imageView.isHidden
+                self.imageView.isHidden = !self.imageView.isHidden
+            } else {
+                self.cameraView.isHidden = true
+                self.imageView.isHidden = false
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(sliderValue)) {
                 self.flicker()
             }
         }
