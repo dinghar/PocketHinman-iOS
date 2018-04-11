@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  PocketHinman
 //
 //  Created by Ross Harding on 4/3/18.
@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import MobileCoreServices
 
-class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
     
     // MARK: Outlets
@@ -37,8 +37,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     let photoOutput = AVCapturePhotoOutput()
     var videoDeviceInput: AVCaptureDeviceInput!
     
+    var scrollView = UIScrollView()
     var imageView = UIImageView()
     var newMedia: Bool = false
+
     
     var alpha: Double = 0.5 {
         didSet {
@@ -62,7 +64,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
             } else {
                 playPauseButton.setImage(#imageLiteral(resourceName: "Play-Button-Sized"), for: .normal)
                 cameraView.isHidden = false
-                imageView.isHidden = false
+                scrollView.isHidden = false
                 configureAlphaLabel()
             }
         }
@@ -74,7 +76,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,10 +87,15 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         calloutView.isHidden = true
         calloutArrow.isHidden = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         beginCapture()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        configureView()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -146,9 +152,27 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     }
     
     func configureImageView() {
-        imageView.contentMode = .scaleAspectFill
+        scrollView.addSubview(imageView)
+        positionScrollViewAndImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.alpha = CGFloat(alpha)
-        view.insertSubview(imageView, aboveSubview: cameraView)
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 0.1
+        scrollView.maximumZoomScale = 5
+        scrollView.zoomScale = 1
+        imageView.frame = scrollView.bounds
+        scrollView.contentSize = cameraView.frame.size
+        view.insertSubview(scrollView, aboveSubview: cameraView)
+        
+        let topConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
+        let leftConstraint = NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: scrollView, attribute: .left, multiplier: 1, constant: 0)
+        let rightConstraint = NSLayoutConstraint(item: imageView, attribute: .right, relatedBy: .equal, toItem: scrollView, attribute: .right, multiplier: 1, constant: 0)
+        view.addConstraints([topConstraint, bottomConstraint, leftConstraint, rightConstraint])
+    }
+    
+    func positionScrollViewAndImageView() {
+        self.scrollView.frame = CGRect(x: 0, y: sliderView.frame.maxY, width: view.frame.width, height: cameraBar.frame.minY - sliderView.frame.maxY)
     }
     
     func configureCameraButtonAnimation() {
@@ -216,8 +240,35 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     
     @IBAction func cancelTapped(_ sender: UIButton) {
         imageView.image = nil
+        resetZoomAndOffset()
     }
     
+    
+    // Unwinding
+    
+    @IBAction func unwindToHomeViewController(segue:UIStoryboardSegue) {
+        
+        if let sourceVC = segue.source as? ResizeImageViewController {
+            if sourceVC.zoomScale != nil {
+                self.scrollView.setZoomScale(sourceVC.zoomScale!, animated: false)
+            }
+            if sourceVC.offset != nil {
+                self.scrollView.contentOffset = sourceVC.offset!
+            }
+        }
+        
+        print(self.scrollView.zoomScale)
+        print(self.scrollView.contentOffset)
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func resetZoomAndOffset() {
+        self.scrollView.setZoomScale(1.0, animated: false)
+        self.scrollView.contentOffset = CGPoint.zero
+    }
     
     
     // Convenience Functions
@@ -241,11 +292,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     func flicker() {
         if self.isPlaying {
             if self.sliderValue != 1 {
-                self.cameraView.isHidden = self.imageView.isHidden
-                self.imageView.isHidden = !self.imageView.isHidden
+                self.cameraView.isHidden = self.scrollView.isHidden
+                self.scrollView.isHidden = !self.scrollView.isHidden
             } else {
                 self.cameraView.isHidden = true
-                self.imageView.isHidden = false
+                self.scrollView.isHidden = false
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(sliderValue)) {
                 self.flicker()
@@ -266,10 +317,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
             
             imageView.image = image
-            imageView.frame = CGRect(x: 0, y: sliderView.frame.maxY, width: view.frame.width, height: cameraBar.frame.minY - sliderView.frame.maxY)
+            resetZoomAndOffset()
+            positionScrollViewAndImageView()
             
             if (newMedia == true) {
-                UIImageWriteToSavedPhotosAlbum(image, self, #selector(ViewController.image(image:didFinishSavingWithError:contextInfo:)), nil)
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(HomeViewController.image(image:didFinishSavingWithError:contextInfo:)), nil)
             }
             
         }
@@ -395,7 +447,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
 
 
 
-extension ViewController: AVCapturePhotoCaptureDelegate {
+extension HomeViewController: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         
@@ -405,8 +457,9 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
             if let sampleBuffer = photoSampleBuffer, let previewBuffer = previewPhotoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
                 
                 if let image = UIImage(data: dataImage) {
-                    self.imageView.frame = CGRect(x: 0, y: sliderView.frame.maxY, width: view.frame.width, height: cameraBar.frame.minY - sliderView.frame.maxY)
+                    self.positionScrollViewAndImageView()
                     self.imageView.image = image
+                    self.resetZoomAndOffset()
                 }
             }
         }
@@ -420,8 +473,9 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
             let image =  UIImage(data: data)  else {
                 return
         }
-        self.imageView.frame = CGRect(x: 0, y: sliderView.frame.maxY, width: view.frame.width, height: cameraBar.frame.minY - sliderView.frame.maxY)
+        self.positionScrollViewAndImageView()
         self.imageView.image = image
+        self.resetZoomAndOffset()
     }
     
 }
