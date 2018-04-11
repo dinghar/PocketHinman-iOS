@@ -146,7 +146,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, 
     }
     
     func configureImageView() {
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.alpha = CGFloat(alpha)
         view.insertSubview(imageView, aboveSubview: cameraView)
     }
