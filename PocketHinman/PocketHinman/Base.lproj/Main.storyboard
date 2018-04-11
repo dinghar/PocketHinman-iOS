@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PocketHinman" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PocketHinman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,17 +206,15 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZSI-rV-dxX">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="589" id="JM2-xp-Ioa"/>
-                                            <constraint firstAttribute="width" constant="375" id="xii-xE-GWE"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ZSI-rV-dxX" secondAttribute="bottom" id="jle-me-Ctr"/>
-                                    <constraint firstItem="ZSI-rV-dxX" firstAttribute="leading" secondItem="vrf-dZ-Ggv" secondAttribute="leading" id="m6u-uI-Hb0"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZSI-rV-dxX" secondAttribute="trailing" id="mSn-8s-xNJ"/>
-                                    <constraint firstItem="ZSI-rV-dxX" firstAttribute="top" secondItem="vrf-dZ-Ggv" secondAttribute="top" id="nKp-df-s37"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZSI-rV-dxX" secondAttribute="trailing" id="8EH-zx-W3s"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZSI-rV-dxX" secondAttribute="bottom" id="X8Q-ci-doP"/>
+                                    <constraint firstItem="ZSI-rV-dxX" firstAttribute="height" secondItem="vrf-dZ-Ggv" secondAttribute="height" id="XsY-gT-WCz"/>
+                                    <constraint firstItem="ZSI-rV-dxX" firstAttribute="width" secondItem="vrf-dZ-Ggv" secondAttribute="width" id="eyx-19-7tf"/>
+                                    <constraint firstItem="ZSI-rV-dxX" firstAttribute="top" secondItem="vrf-dZ-Ggv" secondAttribute="top" id="nis-jn-i65"/>
+                                    <constraint firstItem="ZSI-rV-dxX" firstAttribute="leading" secondItem="vrf-dZ-Ggv" secondAttribute="leading" id="pOp-7l-DR9"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -237,12 +235,12 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="ZSI-rV-dxX" id="kM5-AP-GoX"/>
-                        <outlet property="imageViewHeight" destination="JM2-xp-Ioa" id="th5-Tp-jpe"/>
-                        <outlet property="imageViewWidth" destination="xii-xE-GWE" id="VFy-TW-TPi"/>
                         <outlet property="scrollView" destination="vrf-dZ-Ggv" id="ccu-AZ-bkk"/>
+                        <segue destination="GEj-Dy-JEK" kind="unwind" identifier="unwindSegue" unwindAction="unwindToHomeViewControllerWithSegue:" id="2d4-tN-a5b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbP-Ge-qTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="GEj-Dy-JEK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1319.2" y="133.5832083958021"/>
         </scene>
