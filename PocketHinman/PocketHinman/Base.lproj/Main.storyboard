@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -202,11 +201,15 @@
                                     <action selector="done:" destination="wFO-3b-Hwg" eventType="touchUpInside" id="uNi-pM-lgc"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrf-dZ-Ggv">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="vrf-dZ-Ggv">
                                 <rect key="frame" x="0.0" y="78" width="375" height="589"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZSI-rV-dxX">
-                                        <rect key="frame" x="67" y="160" width="240" height="128"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZSI-rV-dxX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="589" id="JM2-xp-Ioa"/>
+                                            <constraint firstAttribute="width" constant="375" id="xii-xE-GWE"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -234,6 +237,8 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="ZSI-rV-dxX" id="kM5-AP-GoX"/>
+                        <outlet property="imageViewHeight" destination="JM2-xp-Ioa" id="th5-Tp-jpe"/>
+                        <outlet property="imageViewWidth" destination="xii-xE-GWE" id="VFy-TW-TPi"/>
                         <outlet property="scrollView" destination="vrf-dZ-Ggv" id="ccu-AZ-bkk"/>
                     </connections>
                 </viewController>
