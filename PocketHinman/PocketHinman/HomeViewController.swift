@@ -91,11 +91,8 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        beginCapture()
-    }
-    
-    override func viewWillLayoutSubviews() {
         configureView()
+        beginCapture()
     }
     
     override var prefersStatusBarHidden: Bool {
