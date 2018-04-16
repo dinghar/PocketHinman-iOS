@@ -113,8 +113,8 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     
     func configureSlider() {
         
-        slider.maximumValue = 1
-        slider.minimumValue = 0.05
+        slider.maximumValue = 0.2
+        slider.minimumValue = 0
         
         if let sliderVal = UserDefaults.standard.value(forKey: "sliderValue") as! Float? {
             sliderValue = sliderVal
