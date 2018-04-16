@@ -295,7 +295,8 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
                 self.cameraView.isHidden = true
                 self.scrollView.isHidden = false
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(sliderValue)) {
+            let flickerTime = pow((1 - sliderValue), 20.0)
+            DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(flickerTime)) {
                 self.flicker()
             }
         }
