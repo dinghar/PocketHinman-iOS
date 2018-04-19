@@ -58,11 +58,11 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     var isPlaying: Bool = false {
         didSet {
             if isPlaying {
-                playPauseButton.setImage(#imageLiteral(resourceName: "Pause-Button-Sized"), for: .normal)
+                playPauseButton.setImage(#imageLiteral(resourceName: "PauseButton"), for: .normal)
                 alpha = 1
                 flicker()
             } else {
-                playPauseButton.setImage(#imageLiteral(resourceName: "Play-Button-Sized"), for: .normal)
+                playPauseButton.setImage(#imageLiteral(resourceName: "PlayButton"), for: .normal)
                 cameraView.isHidden = false
                 scrollView.isHidden = false
                 configureAlphaLabel()
