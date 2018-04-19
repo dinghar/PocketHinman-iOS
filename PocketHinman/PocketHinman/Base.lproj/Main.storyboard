@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -36,13 +37,13 @@
                                             <constraint firstAttribute="width" constant="40" id="Dd6-qq-E5p"/>
                                             <constraint firstAttribute="height" constant="45" id="NCk-Kc-mt8"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="Play-Button-Sized"/>
+                                        <state key="normal" image="PlayButton"/>
                                         <connections>
                                             <action selector="togglePlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0cT-Qu-jo5"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="hm6-9x-n5q" firstAttribute="leading" secondItem="1lJ-hv-YWo" secondAttribute="trailing" id="5SJ-Di-k3r"/>
                                     <constraint firstAttribute="trailing" secondItem="hm6-9x-n5q" secondAttribute="trailing" id="7RU-rp-X2R"/>
@@ -73,7 +74,7 @@
                                         <rect key="frame" x="57" y="0.0" width="104.5" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J17-ct-efm">
-                                                <rect key="frame" x="32.5" y="10" width="40" height="40"/>
+                                                <rect key="frame" x="33" y="10" width="40" height="40"/>
                                                 <state key="normal" image="Settings"/>
                                                 <connections>
                                                     <action selector="settingsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eJy-BM-eu1"/>
@@ -120,7 +121,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalloutArrow" translatesAutoresizingMaskIntoConstraints="NO" id="wsY-Yf-5Mr">
-                                <rect key="frame" x="94.5" y="582" width="30" height="20"/>
+                                <rect key="frame" x="95" y="582" width="30" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Oac-aB-0Ve"/>
                                     <constraint firstAttribute="width" constant="30" id="ymA-iw-m3A"/>
@@ -267,7 +268,7 @@
         <image name="CalloutArrow" width="27" height="19"/>
         <image name="Camera" width="50" height="50"/>
         <image name="Photos" width="40" height="40"/>
-        <image name="Play-Button-Sized" width="36" height="45"/>
+        <image name="PlayButton" width="36" height="45"/>
         <image name="Settings" width="40" height="40"/>
         <image name="X" width="30" height="40"/>
     </resources>
