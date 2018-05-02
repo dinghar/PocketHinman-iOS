@@ -92,6 +92,9 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     
     override func viewDidAppear(_ animated: Bool) {
         configureView()
+    }
+    
+    override func viewDidLayoutSubviews() {
         beginCapture()
     }
     
