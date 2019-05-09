@@ -15,17 +15,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>PocketHinman needs to access the camera to begin.</string>
+	<string>PocketHinman needs to access the camera to provide comparison of texts.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>PocketHinman wants to add your new photos to your library.</string>
+	<string>PocketHinman wants to add photos you capture to your library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>PocketHinman wants to use photos from your library.</string>
+	<string>PocketHinman wants to access your photos to compare texts.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

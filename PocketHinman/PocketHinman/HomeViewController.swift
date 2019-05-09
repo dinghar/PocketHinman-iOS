@@ -154,7 +154,7 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     func configureImageView() {
         scrollView.addSubview(imageView)
         positionScrollViewAndImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.alpha = CGFloat(alpha)
         scrollView.delegate = self
         scrollView.minimumZoomScale = 0.1
@@ -164,15 +164,16 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         scrollView.contentSize = cameraView.frame.size
         view.insertSubview(scrollView, aboveSubview: cameraView)
         
-        let topConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 0)
-        let bottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
-        let leftConstraint = NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: scrollView, attribute: .left, multiplier: 1, constant: 0)
-        let rightConstraint = NSLayoutConstraint(item: imageView, attribute: .right, relatedBy: .equal, toItem: scrollView, attribute: .right, multiplier: 1, constant: 0)
-        view.addConstraints([topConstraint, bottomConstraint, leftConstraint, rightConstraint])
+//        let topConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 0)
+//        let bottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
+//        let leftConstraint = NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: scrollView, attribute: .left, multiplier: 1, constant: 0)
+//        let rightConstraint = NSLayoutConstraint(item: imageView, attribute: .right, relatedBy: .equal, toItem: scrollView, attribute: .right, multiplier: 1, constant: 0)
+//        view.addConstraints([topConstraint, bottomConstraint, leftConstraint, rightConstraint])
     }
     
     func positionScrollViewAndImageView() {
         self.scrollView.frame = CGRect(x: 0, y: sliderView.frame.maxY, width: view.frame.width, height: cameraBar.frame.minY - sliderView.frame.maxY)
+        self.imageView.frame = CGRect(x: 0, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height*1.02)
     }
     
     func configureCameraButtonAnimation() {
